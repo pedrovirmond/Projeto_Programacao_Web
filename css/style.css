@@ -1,0 +1,80 @@
+/* Centralização da data e hora */
+.data-hora {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo do botão de fechar modal */
+#btn-dialog-fechar {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+/* Estilo do alerta de registro */
+#alerta-registro-ponto {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+/* Botão de fechamento do alerta */
+#alerta-registro-ponto-fechar {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Ocultar alerta */
+.hidden {
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+/* Mostrar alerta */
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilo do botão de registrar ponto */
+#btn-bater-ponto {
+    padding: 15px 30px;
+    background-color: #2196f3;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#dialog-ponto {
+    width: 300px;
+    border-radius: 10px;
+}
+
+#dialog-ponto select,
+#btn-dialog-bater-ponto {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#dialog-last-register {
+    font-size: 0.9rem;
+    color: #555;
+}
