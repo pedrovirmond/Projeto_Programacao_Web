@@ -73,7 +73,9 @@
 }
 
 #dialog-ponto select,
-#btn-dialog-bater-ponto {
+#btn-dialog-bater-ponto,
+#justificativa,
+#upload-arquivo {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
@@ -84,4 +86,16 @@
 #dialog-last-register {
     font-size: 0.9rem;
     color: #555;
+}
+
+#relatorio-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#relatorio {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
 }

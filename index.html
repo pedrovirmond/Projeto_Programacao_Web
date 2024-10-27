@@ -37,10 +37,22 @@
             <option value="volta-intervalo">Volta Intervalo</option>
             <option value="saida">Saída</option>
         </select>
+        <label for="justificativa">Justificativa:</label>
+        <textarea id="justificativa" rows="3" placeholder="Informe a justificativa..."></textarea>
+        <label for="upload-arquivo">Upload de Arquivo:</label>
+        <input type="file" id="upload-arquivo">
         <button id="btn-dialog-bater-ponto">Registrar Ponto</button>
         <p id="dialog-last-register"></p>
         <button id="btn-dialog-fechar">X</button>
     </dialog>
+
+    <!-- Relatório de registros -->
+    <div id="relatorio-container">
+        <h2>Relatório de Registros</h2>
+        <button id="btn-filtrar-ultima-semana">Última Semana</button>
+        <button id="btn-filtrar-ultimo-mes">Último Mês</button>
+        <div id="relatorio"></div>
+    </div>
 
     <!-- Script principal -->
     <script src="js/index.js"></script>
