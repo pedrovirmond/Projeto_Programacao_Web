@@ -11,11 +11,14 @@ const dialogPonto = document.getElementById("dialog-ponto");
 
 // Atualização da data e hora
 function atualizarDataHora() {
-    diaSemana.textContent = new Date().toLocaleDateString('pt-BR', { weekday: 'long' });
-    diaMesAno.textContent = new Date().toLocaleDateString('pt-BR');
-    horaMinSeg.textContent = new Date().toLocaleTimeString('pt-BR');
+    const data = new Date();
+    const diaSemanaFormatado = data.toLocaleDateString('pt-BR', { weekday: 'long' });
+    diaSemana.textContent = diaSemanaFormatado.charAt(0).toUpperCase() + diaSemanaFormatado.slice(1);
+    diaMesAno.textContent = data.toLocaleDateString('pt-BR');
+    horaMinSeg.textContent = data.toLocaleTimeString('pt-BR');
 }
 setInterval(atualizarDataHora, 1000);
+
 
 // Função para salvar e recuperar registros do LocalStorage
 function salvarRegistro(ponto) {
