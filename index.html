@@ -9,52 +9,52 @@
 </head>
 
 <body>
-    <!-- Alerta de registro -->
     <div id="alerta-registro-ponto" class="hidden">
         <p>Ponto registrado com sucesso</p>
         <button id="alerta-registro-ponto-fechar">X</button>
     </div>
 
-    <!-- Exibição de data e hora -->
     <div class="data-hora">
         <p id="dia-semana"></p>
         <p id="dia-mes-ano"></p>
         <p id="hora-min-seg"></p>
     </div>
 
-    <!-- Botão para registrar ponto -->
     <div id="div-btn-bater-ponto">
         <button id="btn-bater-ponto">Bater Ponto!</button>
     </div>
 
-    <!-- Modal de registro de ponto -->
+    <div id="div-btn-justificativa">
+        <button id="btn-justificativa">Registrar Justificativa de Ausência</button>
+    </div>
+
     <dialog id="dialog-ponto">
         <p id="dialog-data"></p>
         <p id="dialog-hora"></p>
+        <input type="date" id="data-ponto" />
         <select name="tipos-ponto" id="tipos-ponto">
             <option value="entrada">Entrada</option>
             <option value="intervalo">Intervalo</option>
             <option value="volta-intervalo">Volta Intervalo</option>
             <option value="saida">Saída</option>
         </select>
-        <label for="justificativa">Justificativa:</label>
-        <textarea id="justificativa" rows="3" placeholder="Informe a justificativa..."></textarea>
-        <label for="upload-arquivo">Upload de Arquivo:</label>
-        <input type="file" id="upload-arquivo">
+        <textarea id="observacao" placeholder="Observação (opcional)"></textarea>
         <button id="btn-dialog-bater-ponto">Registrar Ponto</button>
         <p id="dialog-last-register"></p>
         <button id="btn-dialog-fechar">X</button>
     </dialog>
 
-    <!-- Relatório de registros -->
-    <div id="relatorio-container">
-        <h2>Relatório de Registros</h2>
-        <button id="btn-filtrar-ultima-semana">Última Semana</button>
-        <button id="btn-filtrar-ultimo-mes">Último Mês</button>
-        <div id="relatorio"></div>
+    <dialog id="dialog-justificativa">
+        <input type="text" id="justificativa-texto" placeholder="Justificativa" />
+        <input type="file" id="justificativa-arquivo" />
+        <button id="btn-dialog-justificativa">Registrar Justificativa</button>
+        <button id="btn-justificativa-fechar">X</button>
+    </dialog>
+
+    <div id="div-btn-relatorio">
+        <button id="btn-relatorio">Visualizar Relatório</button>
     </div>
 
-    <!-- Script principal -->
     <script src="js/index.js"></script>
 </body>
 

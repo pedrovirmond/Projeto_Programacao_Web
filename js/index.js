@@ -5,12 +5,12 @@ const horaMinSeg = document.getElementById("hora-min-seg");
 
 // Elementos de botão e alerta
 const btnBaterPonto = document.getElementById("btn-bater-ponto");
+const btnJustificativa = document.getElementById("btn-justificativa");
+const btnRelatorio = document.getElementById("btn-relatorio");
 const divAlertaRegistroPonto = document.getElementById("alerta-registro-ponto");
 const btnDialogFechar = document.getElementById("btn-dialog-fechar");
 const dialogPonto = document.getElementById("dialog-ponto");
-const relatorioContainer = document.getElementById("relatorio");
-const btnFiltrarUltimaSemana = document.getElementById("btn-filtrar-ultima-semana");
-const btnFiltrarUltimoMes = document.getElementById("btn-filtrar-ultimo-mes");
+const dialogJustificativa = document.getElementById("dialog-justificativa");
 
 // Atualização da data e hora
 function atualizarDataHora() {
@@ -53,61 +53,60 @@ btnDialogFechar.addEventListener("click", () => {
 // Registrar ponto e salvar
 document.getElementById("btn-dialog-bater-ponto").addEventListener("click", () => {
     const tipo = document.getElementById("tipos-ponto").value;
-    const data = new Date().toLocaleDateString('pt-BR');
-    const hora = new Date().toLocaleTimeString('pt-BR');
-    const justificativa = document.getElementById("justificativa").value;
-    const arquivo = document.getElementById("upload-arquivo").files[0];
+    const observacao = document.getElementById("observacao").value || ""; // Obter observação
+    const data = new Date();
+    const dataRegistro = data.toLocaleDateString('pt-BR');
+    const hora = data.toLocaleTimeString('pt-BR');
 
-    const ponto = { data, hora, tipo, justificativa, arquivo: arquivo ? arquivo.name : null };
-    salvarRegistro(ponto);
-    dialogPonto.close();
-    mostrarAlerta();
-    document.getElementById("justificativa").value = ""; // Limpar justificativa após o registro
-    document.getElementById("upload-arquivo").value = ""; // Limpar arquivo após o registro
-});
-
-// Exibir relatórios
-function exibirRelatorio(registros) {
-    relatorioContainer.innerHTML = ""; // Limpar relatórios anteriores
-    if (registros.length === 0) {
-        relatorioContainer.innerHTML = "<p>Nenhum registro encontrado.</p>";
+    // Verificar se o registro é para uma data passada
+    const dataSelecionada = new Date(dataRegistro);
+    const dataAtual = new Date();
+    if (dataSelecionada > dataAtual) {
+        alert("Não é possível registrar em datas futuras.");
         return;
     }
 
-    registros.forEach(registro => {
-        const divRegistro = document.createElement("div");
-        divRegistro.innerHTML = `
-            <p>${registro.data} - ${registro.hora} - ${registro.tipo}</p>
-            ${registro.justificativa ? `<p>Justificativa: ${registro.justificativa}</p>` : ""}
-            ${registro.arquivo ? `<p>Arquivo: ${registro.arquivo}</p>` : ""}
-            <button class="btn-editar">Editar</button>
-            <button class="btn-excluir" onclick="alert('O ponto não pode ser excluído!')">Excluir</button>
-        `;
-        relatorioContainer.appendChild(divRegistro);
-    });
-}
+    const ponto = {
+        data: dataRegistro,
+        hora,
+        tipo,
+        observacao,
+        editado: false, // Definir se o registro foi editado
+    };
 
-// Função para filtrar registros
-function filtrarRegistros(filtro) {
-    const registros = obterRegistros();
-    const dataAtual = new Date();
+    // Verificar se a data é do passado
+    if (dataSelecionada < dataAtual) {
+        ponto.passado = true; // Marcar como registro passado
+    } else {
+        ponto.passado = false;
+    }
 
-    const registrosFiltrados = registros.filter(registro => {
-        const dataRegistro = new Date(registro.data);
-        if (filtro === "semana") {
-            const semanaInicio = new Date(dataAtual);
-            semanaInicio.setDate(dataAtual.getDate() - 7);
-            return dataRegistro >= semanaInicio && dataRegistro <= dataAtual;
-        } else if (filtro === "mes") {
-            const mesInicio = new Date(dataAtual.getFullYear(), dataAtual.getMonth(), 1);
-            return dataRegistro >= mesInicio && dataRegistro <= dataAtual;
-        }
-        return false;
-    });
+    salvarRegistro(ponto);
+    dialogPonto.close();
+    mostrarAlerta();
+});
 
-    exibirRelatorio(registrosFiltrados);
-}
+// Registrar justificativa
+btnJustificativa.addEventListener("click", () => {
+    dialogJustificativa.showModal();
+});
 
-// Eventos para filtros
-btnFiltrarUltimaSemana.addEventListener("click", () => filtrarRegistros("semana"));
-btnFiltrarUltimoMes.addEventListener("click", () => filtrarRegistros("mes"));
+// Fechar modal de justificativa
+document.getElementById("btn-justificativa-fechar").addEventListener("click", () => {
+    dialogJustificativa.close();
+});
+
+document.getElementById("btn-dialog-justificativa").addEventListener("click", () => {
+    const justificativa = document.getElementById("justificativa-texto").value;
+    const arquivo = document.getElementById("justificativa-arquivo").files[0];
+
+    // Aqui você pode processar a justificativa e o arquivo se necessário
+
+    dialogJustificativa.close();
+    mostrarAlerta();
+});
+
+// Visualizar relatórios
+btnRelatorio.addEventListener("click", () => {
+    window.location.href = "relatorio.html";
+});
