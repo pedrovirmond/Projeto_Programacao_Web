@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.registro-passado {
+    background-color: #f8d7da;
+
+}
+
+.registro-com-observacao {
+    background-color: #fff3cd;
+
+}
+
+.registro-editado {
+    background-color: #d1ecf1;
+
+}
+
+button {
+    margin: 5px;
+}

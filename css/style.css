@@ -87,21 +87,17 @@
     color: #555;
 }
 
-/* Estilo para registros passados */
 .registro-passado {
     color: red;
     font-weight: bold;
 }
 
-/* Estilo para registros com observação */
 .registro-com-observacao {
     background-color: #ffeb3b;
-    /* Amarelo */
+
 }
 
-/* Estilo para registros editados */
 .registro-editado {
     font-weight: bold;
     text-decoration: underline;
-    /* Sublinhado */
 }

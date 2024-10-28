@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório de Ponto</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/relatorio.css">
 </head>
 
 <body>
     <h1>Relatório de Ponto</h1>
+    <select id="filtro-registros">
+        <option value="30">Últimos 30 dias</option>
+        <option value="7">Últimos 7 dias</option>
+    </select>
+    <button id="btn-aplicar-filtro">Aplicar Filtro</button>
     <div id="relatorio"></div>
     <button id="btn-voltar">Voltar</button>
 
